@@ -52,11 +52,13 @@ Resources:
                         Action:
                             - "sts:AssumeRole"
             Path: "/"
+
     ProfileWithRolesForOurApp:
         Type: "AWS::IAM::InstanceProfile"
         Properties:
             Path: "/"
-            Roles: "IAMDemoBucketRole"
+            Roles:
+                - Ref: "IAMDemoBucketRole"
 
             
     VPC: 
