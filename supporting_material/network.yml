@@ -50,7 +50,7 @@ Resources:
                             Service:
                                 - "ec2.amazonaws.com"
                         Action:
-                            - "sts::AssumeRole"
+                            - "sts:AssumeRole"
             Path: "/"
     ProfileWithRolesForOurApp:
         Type: "AWS::IAM::InstanceProfile"
