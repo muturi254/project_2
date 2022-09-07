@@ -1,5 +1,5 @@
 Description: >
-    Carlos Rivas / Udacity
+    muturi254
     This template deploys a VPC, with a pair of public and private subnets spread 
     across two Availabilty Zones. It deploys an Internet Gateway, with a default 
     route on the public subnets. It deploys a pair of NAT Gateways (one in each AZ), 
@@ -37,7 +37,28 @@ Parameters:
         Default: 10.0.3.0/24
 
 Resources:
+    IAMDemoBucketRole:
+        Type: "AWS::IAM::Role"
+        Properties:
+            ManagedPolicyArms:
+                - "arn::aws::iam::policy::AmazonReadOnlyAccess"
+            AssumeRolePolicyDocument:
+                Version: "2012-10-17"
+                Statement:
+                    -   Effect: "Allow"
+                        Principal:
+                            Service:
+                                - "ec2.amazonaws.com"
+                        Action:
+                            - "sts::AssumeRole"
+            Path: "/"
+    ProfileWithRolesForOurApp:
+        Type: "AWS::IAM::InstanceProfile"
+        Properties:
+            Path: "/"
+            Roles: "IAMDemoBucketRole"
 
+            
     VPC: 
         Type: AWS::EC2::VPC
         Properties:
